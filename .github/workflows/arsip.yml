@@ -1,0 +1,31 @@
+name: Subscription Updater
+
+on:
+  push:
+    branches: [ "main" ]
+  schedule:
+    - cron: '0 */24 * * *'
+  workflow_dispatch:
+jobs:
+  UpdateSub:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check The Code
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
+      - name: Get Files
+        run: |
+          curl -o kclx.txt -LJO https://nautica.situs.workers.dev/api/v1/sub?cc=ID,SG,TW&limit=1000&vpn=vless&port=443
+          curl -o 5412.txt -LJO https://5412.us.to/api/v1/sub?cc=ID,SG,TW&limit=1000&vpn=trojan&port=443
+          curl -o hero.txt -LJO https://herokumail.eu.org/api/v1/sub?cc=ID,SG,TW&limit=1000&vpn=vless&port=443
+      - name: Push And Update Files
+        run: |
+          git config --global user.name "dinaneq"
+          git config --global user.email "dinanda@5412.us.to"
+          git add .
+          git commit -m "Diperbarui pada - $(TZ='Asia/Jakarta' date '+%Y-%m-%d %H:%M:%S') WIB"
+          git push
