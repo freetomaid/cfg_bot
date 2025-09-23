@@ -19,9 +19,9 @@ jobs:
           python-version: '3.10'
       - name: Get Files
         run: |
-          curl -o kclx.txt -LJO https://nautica.situs.workers.dev/api/v1/sub?limit=1000&vpn=vless&port=443
-          curl -o 5412.txt -LJO https://5412.us.to/api/v1/sub?limit=1000&vpn=trojan&port=443
-          curl -o hero.txt -LJO https://herokumail.eu.org/api/v1/sub?limit=1000&vpn=vless&port=443
+          curl -o kclx.txt -LJO https://nautica.situs.workers.dev/api/v1/sub?cc=ID,SG,MY,TW,US,AU,JP,IN,UK,PH,CN,VN,TH&limit=500&vpn=vless&port=443
+          curl -o 5412.txt -LJO https://5412.us.to/api/v1/sub?cc=ID,SG,MY,TW,US,AU,JP,IN,UK,PH,CN,VN,TH&limit=500&vpn=trojan&port=443
+          curl -o hero.txt -LJO https://herokumail.eu.org/api/v1/sub?cc=ID,SG,MY,TW,US,AU,JP,IN,UK,PH,CN,VN,TH&limit=500&vpn=vless&port=443
       - name: Push And Update Files
         run: |
           git config --global user.name "dinaneq"
